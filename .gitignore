@@ -1,0 +1,48 @@
+# Python environments and caches
+.venv/
+venv/
+env/
+tasa-env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+# macOS and editor local state
+.DS_Store
+._*
+.idea/
+.vscode/
+*.swp
+*.swo
+# Local secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# Rebuildable packaging outputs; keep bundled launcher dependency
+build/
+*.egg-info/
+/dist/*
+!/dist/tasa_orbit_v4-4.2.2-py3-none-any.whl
+# Generated run outputs; retain compact reproducibility inputs and scripts
+/runs/**
+!/runs/**/
+!/runs/**/*.yaml
+!/runs/**/*.yml
+!/runs/**/*.script
+/runs/**/checkpoints/
+/output/
+# GMAT reports and temporary artifacts
+Reports.txt
+TrajectoryReport.csv
+FinalSummary.csv
+GMAT.log
+*.log
+*.tmp
+*.temp
+*.bak
