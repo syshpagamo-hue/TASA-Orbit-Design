@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tasa-orbit-v4"
+version = "4.2.2"
+description = "Competition-grade orbital interception optimizer with executable GMAT Report submission"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "casadi>=3.7.2,<3.8",
+  "joblib>=1.4,<2",
+  "numpy>=1.26,<3",
+  "pandas>=2.2,<3",
+  "pydantic>=2.9,<3",
+  "pymoo>=0.6.1,<0.7",
+  "PyYAML>=6,<7",
+  "scipy>=1.14,<2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+
+[project.scripts]
+tasa-v4 = "tasa_v4.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]

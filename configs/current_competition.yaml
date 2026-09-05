@@ -1,0 +1,118 @@
+scenario:
+  epoch_utc: 26 Jun 2026 02:00:00.000
+  mu_km3_s2: 398600.4415
+  chaser:
+    name: Sat
+    dry_mass_kg: 850.0
+    keplerian:
+      sma_km: 7000.0
+      ecc: 0.0
+      inc_deg: 97.7
+      raan_deg: 250.86
+      aop_deg: 0.0
+      ta_deg: 95.57
+  target:
+    name: Sat2
+    dry_mass_kg: 850.0
+    keplerian:
+      sma_km: 10000.0
+      ecc: 0.0
+      inc_deg: 97.7
+      raan_deg: 250.86
+      aop_deg: 0.0
+      ta_deg: 135.0
+  intercept_radius_km: 5.0
+  max_burn_dv_km_s: 1.5
+  min_burn_spacing_s: 100.0
+
+propagation:
+  event_scan_step_s: 20.0
+  root_tolerance_s: 1.0e-7
+  universal_tolerance: 1.0e-11
+  universal_max_iterations: 50
+
+screening:
+  enabled: true
+  step_s: 60.0
+  early_stop_enabled: true
+  early_stop_after_fraction: 0.35
+  early_stop_distance_km: 3000.0
+  increasing_window: 5
+  physical_seed_keep_fraction: 0.10
+  physical_seed_minimum_keep: 12
+
+physical_seeds:
+  enabled: true
+  lambert_enabled: true
+  lambert_tof_fractions: [0.10, 0.16, 0.25, 0.35, 0.50, 0.70, 1.00, 1.35, 1.75, 2.25, 3.00, 4.00]
+  lambert_revolutions: [0, 1, 2, 3]
+  lambert_include_retrograde: false
+  lambert_max_solutions: 48
+  phasing_enabled: true
+  phasing_closure_periods: [0.5, 1.0, 1.5, 2.0, 3.0]
+  hohmann_enabled: true
+  node_plane_change_enabled: true
+  high_apogee_enabled: true
+  high_apogee_raise_burns_km_s: [0.15, 0.30, 0.50, 0.75]
+  population_fraction: 0.70
+  jitter_per_seed: 3
+  exploration: sobol
+
+checkpoint:
+  enabled: true
+  resume: true
+  directory_name: checkpoints
+
+robustness:
+  enabled: true
+  distribution: normal
+  # 不在 NSGA-II 的每個候選執行 8 情境；只驗證最後 finalists。
+  screening_scenarios: 0
+  certification_scenarios: 128
+  required_success_rate: 0.95
+  position_sigma_km: 0.02
+  velocity_sigma_km_s: 2.0e-5
+  burn_timing_sigma_s: 0.02
+  burn_relative_sigma: 2.0e-4
+  burn_component_sigma_km_s: 2.0e-5
+  mu_relative_sigma: 1.0e-8
+  sample_seed: 20260814
+  safety_margin_km: 0.25
+
+optimization:
+  burn_counts: [1, 2, 3]
+  population_size: 160
+  generations_per_epoch: 60
+  island_epochs: 4
+  seeds: [11, 29, 47, 83]
+  workers: 4
+  migration_fraction: 0.15
+  robust_as_objective: false
+  max_front_size: 250
+  official_score_as_objective: true
+  final_robustness_candidates: 20
+
+multiple_shooting:
+  enabled: true
+  mesh_intervals_per_coast: 12
+  rk4_substeps_per_interval: 8
+  robust_scenarios: 0
+  max_iterations: 1200
+  tolerance: 1.0e-9
+  time_weight: 0.5
+  refine_front_candidates: 12
+
+gmat:
+  executable: null
+  startup_file: null
+  timeout_s: 600
+  initial_step_s: 0.25
+  min_step_s: 0.0001
+  max_step_s: 0.25
+  accuracy: 1.0e-12
+  post_entry_buffer_s: 30.0
+  max_time_difference_s: 0.5
+  max_position_difference_km: 0.25
+
+# 正式係數公告後填入 kt、ct_s、kv、cv_km_s；未填時仍建立 Pareto 前緣。
+score: null

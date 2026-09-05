@@ -1,0 +1,10 @@
+name: legacy-A-deep-01
+source: previous-generator-unverified
+evaluation_horizon_s: 2585.26251378827
+burns:
+  - time_s: 44.326687911605
+    dv_vnb_km_s: [0.816188057413, 0.0, -0.061550107621]
+metadata:
+  warning: 必須以本版首次進入事件與 GMAT 軌跡重新驗證
+  previous_python_entry_time_s: 2582.097701537
+
