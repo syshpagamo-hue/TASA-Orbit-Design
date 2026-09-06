@@ -1,0 +1,15 @@
+{
+  "name": "sy-maker-order",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "latest"
+  },
+  "devDependencies": {
+    "@netlify/functions": "latest"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
